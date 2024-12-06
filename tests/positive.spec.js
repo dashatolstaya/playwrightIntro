@@ -14,6 +14,6 @@ test.describe('POM Positive Registration Tests', () => {
         await registrationPage.fillRegistrationForm();
         await registrationPage.clickRegisterButton();
 
-        await expect(page).toHaveURL('https://qauto.forstudy.space/panel/garage');
+        await expect(page).toHaveURL('/panel/garage');
     });
 });
