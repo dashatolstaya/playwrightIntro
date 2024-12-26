@@ -7,7 +7,8 @@
   "scripts": {
     "test:all:headless": "playwright test",
     "test:all": "playwright test --headed",
-    "test:chrome": "playwright test --project Chrome --workers=1"
+    "test:chromium": "playwright test --project Chromium --workers=1",
+    "test:firefox": "playwright test --project firefox --workers=1"
   },
   "author": "Daria",
   "license": "ISC",
