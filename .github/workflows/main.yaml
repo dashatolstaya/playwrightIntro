@@ -1,0 +1,34 @@
+name: Run Playwright Tests in Docker
+
+on:
+  push:
+    branches:
+      - "*"
+  pull_request:
+    types: ['opened', 'synchronize', 'reopened']
+
+jobs:
+  playwright-tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Run Playwright tests in Docker
+        uses: addnab/docker-run-action@v3
+        with:
+          image: mcr.microsoft.com/playwright:v1.39.0-jammy
+          options: >
+            --shm-size=2gb
+            -v ${{ github.workspace }}:/tests
+            -w /tests
+          run: |
+            npm install
+            npx playwright install
+            npx playwright test
